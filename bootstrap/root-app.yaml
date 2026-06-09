@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aiops-root
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: aiops-root
+    app.kubernetes.io/part-of: aiops-platform
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/truong-devops/aiops-gitops-manifests.git
+    targetRevision: main
+    path: argocd-apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

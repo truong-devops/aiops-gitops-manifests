@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aiops-apps-dev
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: aiops-apps-dev
+    app.kubernetes.io/part-of: aiops-platform
+    aiops.dev/environment: dev
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/truong-devops/aiops-gitops-manifests.git
+    targetRevision: main
+    path: apps/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

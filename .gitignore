@@ -1,0 +1,12 @@
+.DS_Store
+*.swp
+*.swo
+
+# Local-only kube/argo files
+kubeconfig*
+*.kubeconfig
+argocd-token*
+
+# Generated render output
+rendered/
+tmp/
