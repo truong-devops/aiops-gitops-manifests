@@ -1,21 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aiops-platform-dev
+  name: aiops-observability
   namespace: argocd
   labels:
-    app.kubernetes.io/name: aiops-platform-dev
+    app.kubernetes.io/name: aiops-observability
     app.kubernetes.io/part-of: aiops-platform
-    aiops.dev/environment: dev
 spec:
   project: default
   source:
     repoURL: https://github.com/truong-devops/aiops-gitops-manifests.git
     targetRevision: main
-    path: platform/overlays/dev
+    path: platform/monitoring
   destination:
     server: https://kubernetes.default.svc
-    namespace: platform
+    namespace: observability
   syncPolicy:
     automated:
       prune: true

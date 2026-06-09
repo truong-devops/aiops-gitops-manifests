@@ -12,6 +12,8 @@ spec:
     repoURL: https://github.com/truong-devops/aiops-gitops-manifests.git
     targetRevision: main
     path: argocd-apps
+    directory:
+      recurse: false
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
