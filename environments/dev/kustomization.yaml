@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: app-dev
 resources:
   - namespace.yaml
+  - api-gateway.yaml
   - identity-service.yaml
   - video-service.yaml
   - media-worker.yaml
